@@ -17,7 +17,7 @@ python -m pip install discord-ext-voice-recv
 
 To install directly from github:
 ```
-python -m pip install git+https://github.com/imayhaveborkedit/discord-ext-voice-recv
+python -m pip install git+https://github.com/bleachbits/discord-ext-voice-recv
 ```
 
 Naturally, this extension depends on `discord.py` being installed with voice support (`pynacl`).
