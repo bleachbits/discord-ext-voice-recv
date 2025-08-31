@@ -28,7 +28,7 @@ class VoiceVideoStreams:
     def __init__(self, *, data: VoiceVideoPayload, vc: VoiceRecvClient):
         self.audio_ssrc = data['audio_ssrc']
         self.video_ssrc = data['video_ssrc']
-        self.member = vc.guild.get_member(int(data['user_id']))
+        self.member = vc.guild.get_member(int(data['user_id'])) or int(data['user_id'])
         self.streams = self._get_streams(data['streams'])
 
     def __repr__(self) -> str:
@@ -87,9 +87,14 @@ class VideoStreamResolution:
     )
 
     def __init__(self, data: VideoResolutionPayload):
-        self.height = data['height']
-        self.width = data['width']
-        self.type = data['type']
+        if data != None:
+            self.height = data['height']
+            self.width = data['width']
+            self.type = data['type']
+        else:
+            self.height = None
+            self.width = None
+            self.type = None
 
     def __repr__(self) -> str:
         return f"<VideoStreamResolution width={self.width!r} height={self.height!r} type={self.type!r}>"
